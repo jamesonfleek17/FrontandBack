@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Coursework 2</title>
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="jsfunctions.js"></script>
+</head>
+
+
+
+<body>
+
+<h1 style = "text-align: center;">Coursework2 - Html, JavaScript, CSS, PHP, MySQLi</h1>
+
+<p>In this Coursework I demonstrate how to add, remove and search for componnets in a Movie and Actor table.</p>
+
+
+
+<div id="addRemovePerson" class = "inputDiv">
+
+    <h2 class = "headings" ; style = "text-align: center;">Adding/Deleting an entry</h2>
+
+
+    <form name = "tableToChangeForm" onsubmit= "if( (validateRadio() && validateText()) == false){return false;}else{return true;}">
+        <p>Enter choice for table:</p>
+        <input type="radio" id="actButton" name="tableToChange" value="Actor" onclick="clickedMeTable('Actor'); hideMovie();">
+        <label for="actButton">Actor</label><br>
+        <input type="radio" id="movieButton" name="tableToChange" value="Movie" onclick="clickedMeTable('Movie'); hideActor();">
+        <label for="movieButton">Movie</label>
+
+    
+        <br><p>Add or Delete an Entry:</p>
+        <input type="radio" id="addButton" name="operationValue" value="ADD" onclick="clickedMeOperation('Add')">
+        <label for="addButton">Add</label><br>
+        <input type="radio" id="deleteButton" name="operationValue" value="DELETE" onclick="clickedMeOperation('Delete')">
+        <label for="deleteButton">Delete</label>
+        <br>
+
+        <p id = "specTable">Table: No Table Selected </p>
+        <p id = "addOrDeleteP">Operation: No Operation Selected</p>
+
+
+        <div id = "actorInput" class = "dissapearing">
+            <input type = "text" name = "actActorId" placeholder="ActorID"><br>
+            <input type = "text" name = "actFullName" placeholder="Full Name"><br>
+            <input type = "text" name = "actAge" placeholder="Age"><br>
+        </div>
+
+        <div id = "movieInput" class = "dissapearing">
+            <input type = "text" name = "mvActorId" placeholder="ActorID" id = "movActIdInp"><br>
+            <input type = "text" name = "mvName" placeholder="Movie Name" id = "mvNameInp"><br>
+            <input type = "text" name = "mvRating" placeholder="Rating" id = "ratingMvInp"><br>  
+            <input type = "text" name = "mvGenre" placeholder="Genre" id = genreMvInp><br>
+            <input type = "text" name = "mvLength" placeholder="Length (Hours)" id = "lengthMvInp"><br>
+        </div>
+
+        <input type="submit" id = "error" value="Submit" >
+
+    </form>
+
+    <p id = "Conformation"></p>
+
+</div>
+
+
+<div id="searchPerson" class = "inputDiv">
+
+    <h2 class = "headings" ; style = "text-align: center;">Searching for an entry</h2>
+
+    
+    Table liked to be searched:
+    <br>
+    <form name = "tableToBeSearched">
+        <input type="radio" id="searchActor" name="searchTable" value="Actor">
+        <label for="searchActor">Actor</label><br>
+
+        <input type="radio" id="searchMovie" name="searchTable" value="Movie">
+        <label for="searhMovie">Movie</label>
+    </form>
+
+
+    
+</div>
+    
+
+<div id="Results">
+
+    <h2 class = "headings" ; style = "text-align: center;">Results</h2>
+    
+</div>
+
+
+
+</body>
+</html>

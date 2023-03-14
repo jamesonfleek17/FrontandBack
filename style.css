@@ -1,0 +1,48 @@
+body {
+    background-color: #011f4b;
+    color: white;
+    font-family: verdana;
+}
+
+
+.headings {
+    color: white;
+    font-family: verdana;
+}
+
+.inputDiv {
+    color: white;
+    padding: 20px;
+    text-align: left;
+    margin: 5px 0;
+  }
+
+#addRemovePerson {
+    background-color: #03396c;
+}
+
+#searchPerson {
+    background-color: #005b96;
+}
+
+#Results {
+    background-color: #6497b1;
+    padding: 20px;
+    text-align: left;
+    margin: 10px 0;
+}
+
+
+.headings {
+    color: white;
+    font-family: verdana;
+}
+
+
+.dissapearing{
+    color: white;
+    padding: 10px;
+    text-align: left;
+    margin: 5px 0;
+    display : none;
+}
