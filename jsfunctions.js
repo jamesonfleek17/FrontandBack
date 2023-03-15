@@ -1,91 +1,93 @@
-// specifies in a target <p> what table has been clicked        // can be merged together
-function clickedMeTable(tableClicked)
+// used for target <p> tags to identify to the user what Radio buttons have been clicked
+// applies to Table names, operation names
+function clickedMeRadio(tableClicked,pToChange)
 {
-    let text1 = "Table: "
-    var div = document.getElementById('specTable').innerHTML = text1.concat(tableClicked);
-}
-function clickedMeOperation(operationClicked)
-{
-    text1 = "Operation: "
-    var div = document.getElementById('addOrDeleteP').innerHTML = text1.concat(operationClicked);
+    let text1 = "Table: ";
+    let text2 = "Operation: ";
+    let text3 = "Table searching: ";
+
+    switch(pToChange)
+    {
+        case "specTable":
+            var div = document.getElementById(pToChange).innerHTML = text1.concat(tableClicked); 
+            break;
+        case "addOrDeleteP":
+            var div = document.getElementById(pToChange).innerHTML = text2.concat(tableClicked);
+            break;
+        case "searchTable":
+            var div = document.getElementById(pToChange).innerHTML = text3.concat(tableClicked);
+            break;
+    }
+
 }
 
 
-// functions for hiding divs based on users choice
-function hideMovie(){
-    var divHide = document.getElementById('movieInput');
-    var divShow = document.getElementById('actorInput');
+// Each Table has a series of textBoxes to enter in a specified div
+// called by radio buttons to hide/show associated div inputs with radio boxes
+function hideDiv(eleToHide,eleToShow){
+    var divHide = document.getElementById(eleToHide);
+    var divShow = document.getElementById(eleToShow);
 
     divHide.style.display = 'none';
     divShow.style.display = 'block';
 }
-function hideActor(){
-    var divHide = document.getElementById('actorInput');
-    var divShow = document.getElementById('movieInput');
 
-    divHide.style.display = 'none';
-    divShow.style.display = 'block';
-}
-
-
-// function for validating user input texts in form
-function validateText()
+/*
+function searchValidateText()
 {
-    var x = document.getElementById("actorInput");
+    var x = document.getElementById("searchActorInput");
+    msg = "";
+
     if( window.getComputedStyle(x).display === "none" )
     {
         // table chosen is movie 
-        var divElementMovie = document.getElementById("movieInput");
-        var textBoxesMovie = divElement.querySelectorAll("input[type = text]");
-        var flagMv = 0;
-        msgMv = "These fields are void:";
+        var divElementMovie = document.getElementById('searchMovieInput');
+        var textBoxesMovie = divElementMovie.querySelectorAll('input[type="text"]');
+        msg = "Empty Elements are: \n";
+        var mvFlag = 0;
 
-        for (var i = 0; i < divElementMovie.length; i++)
-        {
-            if(textBoxesMovie[i].value.trim() == "")
+        for(var i = 0 ; i < textBoxesMovie.length; i++){
+            if( textBoxesMovie[i].value.trim() == "" )
             {
-                flagMv = 1;
-                msgMv += textBoxesMovie[i] + ", ";
+                msg += "- " + textBoxesMovie[i].placeholder + "\n";
+                mvFlag = 1;
             }
         }
 
-        if(flagMv == 1){
-            alert(msgMv);
+        if( mvFlag == 1)
+        {
+            alert(msg);
             return false;
         }
 
         return true;
 
     } else {
-
         // table chosen is actor 
-        var divElementActor = document.getElementById("actorInput");
-        var textBoxesActor = document.querySelectorAll("input[type=text]");
-        var flagAct = 0;
-        msgAct = "These fields are void:";
+        var divElementActor = document.getElementById('searchActorInput');
+        var textBoxesActor = divElementActor.querySelectorAll('input[type="text"]');
+        actMsg = "Empty elements are: \n";
+        var actFlag = 0;
 
-
-        for ( var j = 0; j < textBoxesActor.length ; j++)
-        {
-            if( textBoxesActor[j].value.trim() == "")
+        for(var j = 0 ; j < textBoxesActor.length; j++){
+            if( textBoxesActor[j].value.trim() == "" )
             {
-                flagAct = 1;
-                msg += textBoxesActor[j] + ", ";
+                actMsg += "- " + textBoxesActor[j].placeholder + "\n";
+                actFlag = 1;
             }
         }
 
-        if(flagAct = 1)
+        if( actFlag == 1)
         {
-            alert(msgAct);
+            alert(actMsg);
             return false;
         }
 
         return true;
     }
 }
-
-
-// validation checks on user inputs
+*/
+// client side radio box validation
 function validateRadio()
 {
     // validating radio buttons with arrays of inputs
@@ -128,11 +130,158 @@ function validateRadio()
         alert("" + alertText);
         return false;
     }
-        
 
     return true;
+}
+
+
+function searchValidateRadio()
+{
+    // validating radio buttons with arrays of inputs
+    var radio1Buttons = document.tableToBeSearched.searchTable;     // Table to Change 
+    var flag1 = 0;
+    var flag2 = 0;
+    alertText = "";
+
+    for( var i = 0; i < radio1Buttons.length ; i++)
+    {
+        if(radio1Buttons[i].checked){
+            flag1 = 1;
+            break;
+        }
+    }
+
+
+    // outputs for radio buttons
+    if( flag1 == 0 )
+    {
+        alertText = alertText + "Please enter table to search\n";
+    }
+
+
+    if( flag1 == 0 ){
+        alert("" + alertText);
+        return false;
+    }
+        
+    return true;
+}
+
+function validateTextUniversal(textDiv,otherDiv)
+{
+    var x = document.getElementById(textDiv);
+    msg = "";
+
+    if( window.getComputedStyle(x).display === "none" )
+    {
+        // table chosen is movie 
+        var divElementMovie = document.getElementById(otherDiv);
+        var textBoxesMovie = divElementMovie.querySelectorAll('input[type="text"]');
+        msg = "Empty Elements are: \n";
+        var mvFlag = 0;
+
+        for(var i = 0 ; i < textBoxesMovie.length; i++){
+            if( textBoxesMovie[i].value.trim() == "" )
+            {
+                msg += "- " + textBoxesMovie[i].placeholder + "\n";
+                mvFlag = 1;
+            }
+        }
+
+        if( mvFlag == 1)
+        {
+            alert(msg);
+            return false;
+        }
+
+        return true;
+
+    } else {
+        // table chosen is actor 
+        var divElementActor = document.getElementById(textDiv);
+        var textBoxesActor = divElementActor.querySelectorAll('input[type="text"]');
+        actMsg = "Empty elements are: \n";
+        var actFlag = 0;
+
+        for(var j = 0 ; j < textBoxesActor.length; j++){
+            if( textBoxesActor[j].value.trim() == "" )
+            {
+                actMsg += "- " + textBoxesActor[j].placeholder + "\n";
+                actFlag = 1;
+            }
+        }
+
+        if( actFlag == 1)
+        {
+            alert(actMsg);
+            return false;
+        }
+
+        return true;
+ 
+    }
 
 }
+
+
+// client side text box validation
+/*
+function validateText()
+{
+    var x = document.getElementById("actorInput");
+    msg = "";
+
+    if( window.getComputedStyle(x).display === "none" )
+    {
+        // table chosen is movie 
+        var divElementMovie = document.getElementById('movieInput');
+        var textBoxesMovie = divElementMovie.querySelectorAll('input[type="text"]');
+        msg = "Empty Elements are: \n";
+        var mvFlag = 0;
+
+        for(var i = 0 ; i < textBoxesMovie.length; i++){
+            if( textBoxesMovie[i].value.trim() == "" )
+            {
+                msg += "- " + textBoxesMovie[i].placeholder + "\n";
+                mvFlag = 1;
+            }
+        }
+
+        if( mvFlag == 1)
+        {
+            alert(msg);
+            return false;
+        }
+
+        return true;
+
+    } else {
+        // table chosen is actor 
+        var divElementActor = document.getElementById('actorInput');
+        var textBoxesActor = divElementActor.querySelectorAll('input[type="text"]');
+        actMsg = "Empty elements are: \n";
+        var actFlag = 0;
+
+        for(var j = 0 ; j < textBoxesActor.length; j++){
+            if( textBoxesActor[j].value.trim() == "" )
+            {
+                actMsg += "- " + textBoxesActor[j].placeholder + "\n";
+                actFlag = 1;
+            }
+        }
+
+        if( actFlag == 1)
+        {
+            alert(actMsg);
+            return false;
+        }
+
+        return true;
+ 
+    }
+
+}
+*/
 
 
 
