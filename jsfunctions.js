@@ -18,6 +18,8 @@ function clickedMeRadio(tableClicked,pToChange)
             var div = document.getElementById(pToChange).innerHTML = text3.concat(tableClicked);
             break;
     }
+    
+    return;
 
 }
 
@@ -31,6 +33,8 @@ function hideDiv(eleToHide,eleToShow){
 
     divHide.style.display = 'none';
     divShow.style.display = 'block';
+
+    return;
 }
 
 
@@ -139,12 +143,18 @@ function validateTextUniversal(textDiv,otherDiv)
         msg = "Empty Elements are: \n";
         var mvFlag = 0;
 
-        for(var i = 0 ; i < textBoxesMovie.length; i++){
+        for(var i = 0 ; i < textBoxesMovie.length; i++)
+        {
+            // input is a string
             if( textBoxesMovie[i].value.trim() == "" )
             {
                 msg += "- " + textBoxesMovie[i].placeholder + "\n";
+                textBoxesMovie[i].classList.add("invalid");
                 mvFlag = 1;
+            } else {
+                textBoxesMovie[i].classList.add("valid");
             }
+
         }
 
         if( mvFlag == 1)
@@ -162,17 +172,19 @@ function validateTextUniversal(textDiv,otherDiv)
         var textBoxesActor = divElementActor.querySelectorAll('input[type="text"]');    
         actMsg = "Empty elements are: \n";
         var actFlag = 0;
-
         // loops through the array of input text boxes and adds the empty ones to an alert
-        for(var j = 0 ; j < textBoxesActor.length; j++){
+        for( var j = 0 ; j < textBoxesActor.length; j++ ){
             if( textBoxesActor[j].value.trim() == "" )
             {
                 actMsg += "- " + textBoxesActor[j].placeholder + "\n";
+                textBoxesActor[j].classList.add("invalid");
                 actFlag = 1;
-            }
+            } else {
+                textBoxesActor[j].classList.add("valid");
+            } 
         }
 
-        if( actFlag == 1)
+        if( actFlag == 1 )
         {
             alert(actMsg);
             return false;
@@ -183,8 +195,5 @@ function validateTextUniversal(textDiv,otherDiv)
     }
 
 }
-
-
-
 
 

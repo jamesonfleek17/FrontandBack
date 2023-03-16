@@ -19,30 +19,61 @@ body {
 
 #addRemovePerson {
     background-color: #03396c;
-}
-
-#searchPerson {
-    background-color: #005b96;
-}
-
-#Results {
-    background-color: #6497b1;
-    padding: 20px;
+    padding: 10px;
     text-align: left;
     margin: 10px 0;
 }
 
+#searchPerson {
+    background-color: #005b96;
+    padding: 10px;
+    text-align: left;
+    margin: 10px 0;
+}
 
+#Results {
+    background-color: #6497b1;
+    padding: 10px;
+    text-align: left;
+    margin: 10px 0;
+}
+
+/* headings for each div */
 .headings {
     color: white;
     font-family: verdana;
 }
 
-
+/* disappearing class for divs changing */
 .dissapearing{
     color: white;
     padding: 10px;
     text-align: left;
     margin: 5px 0;
     display : none;
+}
+
+
+/* classes for inputs box validation */
+.invalid {
+    background-color: #FF8787
+}
+
+.valid {
+    background-color: #B6FF87;
+}
+
+
+.integerInput {
+    border : none;
+    padding: 12px 20px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+.stringInput {
+    border : none;
+    padding: 12px 20px;
+    margin: 5px 0;
+    box-sizing: border-box;
 }

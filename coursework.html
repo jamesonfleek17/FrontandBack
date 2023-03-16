@@ -23,7 +23,7 @@
     <h2 class = "headings" ; style = "text-align: center;">Adding/Deleting an entry</h2>
 
     <!-- FORM FOR ADDING / DELETING ENTRIES INTO THE DATABASE -->
-    <form name = "tableToChangeForm" onsubmit= "if( (validateRadio() && validateTextUniversal('actorInput','movieInput')) == false){return false;}else{return true;}">
+    <form onsubmit= "if( (validateRadio() && validateTextUniversal('actorInput','movieInput')) == false){return false;}else{return true;}" name = "tableToChangeForm" > <!-- form does not submit if false, if true submits -->
 
         <!-- Choice of possible tables operate on -->
         <p>Enter choice for table:</p>
@@ -46,18 +46,17 @@
 
         <!-- Actor table input fields -->
         <div id = "actorInput" class = "dissapearing">
-            <input type = "text" name = "actActorId" placeholder="ActorID"><br>
-            <input type = "text" name = "actFullName" placeholder="Full Name"><br>
-            <input type = "text" name = "actAge" placeholder="Age"><br>
+            <input type = "text" name = "actFullName" placeholder="Full Name" class = "stringInput"><br>
+            <input type = "text" name = "actAge" placeholder="Age" class = "integerInput"><br>
         </div>
 
         <!-- Movie table input fields -->
         <div id = "movieInput" class = "dissapearing">
-            <input type = "text" name = "mvActorId" placeholder="Movie ActorId" id = "movActIdInp"><br>
-            <input type = "text" name = "mvName" placeholder="Film Title" id = "mvNameInp"><br>
-            <input type = "text" name = "mvRating" placeholder="Rating" id = "ratingMvInp"><br>  
-            <input type = "text" name = "mvGenre" placeholder="Genre" id = "genreMvInp"><br>
-            <input type = "text" name = "mvLength" placeholder="Length (Hours)" id = "lengthMvInp"><br>
+            <input type = "text" name = "mvActorId" placeholder="Movie ActorId" id = "movActIdInp" class = "integerInput"><br>
+            <input type = "text" name = "mvName" placeholder="Film Title" id = "mvNameInp" class = "stringInput"><br>
+            <input type = "text" name = "mvRating" placeholder="Rating" id = "ratingMvInp" class = "integerInput"><br>  
+            <input type = "text" name = "mvGenre" placeholder="Genre" id = "genreMvInp" class = "stringInput"><br>
+            <input type = "text" name = "mvLength" placeholder="Length (Hours)" id = "lengthMvInp" class = "integerInput"><br>
         </div>
 
         <!-- Submit button for "tableToChangeForm" -->
@@ -86,18 +85,17 @@
 
         <!-- Actor Table input fields -->
         <div id = "searchActorInput" class = "dissapearing">
-            <input type = "text" name = "searchActId" placeholder="(Search) ActorID" id = "searchActId"><br>
-            <input type = "text" name = "searchActFullName" placeholder="(Search) Full Name" id = "searchFullName"><br>
-            <input type = "text" name = "searchActAge" placeholder="(Search) Age" id = "searchAge"><br>
+            <input type = "text" name = "searchActFullName" placeholder="(Search) Full Name" id = "searchFullName" class = "stringInput"><br>
+            <input type = "text" name = "searchActAge" placeholder="(Search) Age" id = "searchAge" class = "integerInput"><br>
         </div>
 
         <!-- Movie table input fields-->
         <div id = "searchMovieInput" class = "dissapearing">
-            <input type = "text" name = "searchMvActorId" placeholder="(Search) Movie ActorId" id = "searchMovActIdInp"><br>
-            <input type = "text" name = "searchMvName" placeholder="(Search) Film Title" id = "searchMvNameInp"><br>
-            <input type = "text" name = "searchMvRating" placeholder="(Search) Rating" id = "searchRatingMvInp"><br>  
-            <input type = "text" name = "searchMvGenre" placeholder="(Search) Genre" id = "searchGenreMvInp"><br>
-            <input type = "text" name = "searchMvLength" placeholder="(Search) Length (Hours)" id = "searchLengthMvInp"><br>
+            <input type = "text" name = "searchMvActorId" placeholder="(Search) Movie ActorId" id = "searchMovActIdInp" class = "integerInput"><br>
+            <input type = "text" name = "searchMvName" placeholder="(Search) Film Title" id = "searchMvNameInp" class = "stringInput"><br>
+            <input type = "text" name = "searchMvRating" placeholder="(Search) Rating" id = "searchRatingMvInp" class = "integerInput"><br>  
+            <input type = "text" name = "searchMvGenre" placeholder="(Search) Genre" id = "searchGenreMvInp" class = "stringInput"><br>
+            <input type = "text" name = "searchMvLength" placeholder="(Search) Length (Hours)" id = "searchLengthMvInp" class="integerInput"><br>
         </div>
 
         <!-- Submit button for "tableToBeSearched" -->
@@ -113,7 +111,6 @@
     <h2 class = "headings" ; style = "text-align: center;">Results</h2>
     
 </div>
-
 
 
 </body>
