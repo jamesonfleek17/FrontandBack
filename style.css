@@ -66,12 +66,14 @@ body {
 
 .integerInput {
     border : none;
+    width: 100%;
     padding: 12px 20px;
     margin: 5px 0;
     box-sizing: border-box;
 }
 
 .stringInput {
+    width: 100%;
     border : none;
     padding: 12px 20px;
     margin: 5px 0;

@@ -47,16 +47,16 @@
         <!-- Actor table input fields -->
         <div id = "actorInput" class = "dissapearing">
             <input type = "text" name = "actFullName" placeholder="Full Name" class = "stringInput"><br>
-            <input type = "text" name = "actAge" placeholder="Age" class = "integerInput"><br>
+            <input type = "number" name = "actAge" class = "integerInput" min="1" max="99" placeholder="Age" id = "actAgeInp"><br>
         </div>
 
         <!-- Movie table input fields -->
         <div id = "movieInput" class = "dissapearing">
-            <input type = "text" name = "mvActorId" placeholder="Movie ActorId" id = "movActIdInp" class = "integerInput"><br>
+            <input type = "number" name = "mvActorId" placeholder="Movie ActorId" min="1" max="99" id = "movActIdInp" class = "integerInput"><br>
             <input type = "text" name = "mvName" placeholder="Film Title" id = "mvNameInp" class = "stringInput"><br>
-            <input type = "text" name = "mvRating" placeholder="Rating" id = "ratingMvInp" class = "integerInput"><br>  
+            <input type = "number" name = "mvRating" placeholder="Rating" min="1" max="99" id = "ratingMvInp" class = "integerInput"><br>  
             <input type = "text" name = "mvGenre" placeholder="Genre" id = "genreMvInp" class = "stringInput"><br>
-            <input type = "text" name = "mvLength" placeholder="Length (Hours)" id = "lengthMvInp" class = "integerInput"><br>
+            <input type = "number" name = "mvLength" placeholder="Length (Hours)" min="1" max="99" id = "lengthMvInp" class = "integerInput"><br>
         </div>
 
         <!-- Submit button for "tableToChangeForm" -->
