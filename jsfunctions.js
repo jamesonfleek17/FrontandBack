@@ -138,100 +138,55 @@ function validateTextUniversal(textDiv,otherDiv)
     if( window.getComputedStyle(x).display === "none" )
     {
         // The table chosen is Movie and the Movie input fields are beind shown. 
-        var divElementMovie = document.getElementById(otherDiv);
-        var textBoxesMovie = divElementMovie.querySelectorAll('input[type="text"]');
-        var intBoxesMovie = divElementMovie.querySelectorAll('input[type="number"]');
-        msg = "Empty Elements are: \n";
-        var mvFlag = 0;
-
-        // Loops through each type=text input and validates. 
-        for(var i = 0 ; i < textBoxesMovie.length; i++)
-        {
-            if( textBoxesMovie[i].value.trim() == "" )
-            {
-                msg += "- " + textBoxesMovie[i].placeholder + "\n";
-                textBoxesMovie[i].classList.remove("valid");
-                textBoxesMovie[i].classList.add("invalid");
-                mvFlag = 1;
-            } else {
-                textBoxesMovie[i].classList.remove("invalid");
-                textBoxesMovie[i].classList.add("valid");
-            }
-        }
-
-        // loops throuch each of the type=number values and validates
-        for(var k = 0 ; k < intBoxesMovie.length; k++)
-        {
-            x = intBoxesMovie[k].value;
-            if(!/^[0-99]+$/.test(x))
-            {
-                msg += "- " + intBoxesMovie[k].placeholder + "\n";
-                intBoxesMovie[k].classList.remove("valid");
-                intBoxesMovie[k].classList.add("invalid");
-                mvFlag = 1;
-            } else {
-                intBoxesMovie[k].classList.remove("invalid");
-                intBoxesMovie[k].classList.add("valid");
-            }
-        }
-
-        if( mvFlag == 1)
-        {
-            alert(msg);
-            return false;
-        }
-
-        return true;
-
+        var divElement = document.getElementById(otherDiv);
     } else {
         // The table chosen is Actor and the Actor input fields are being shown. 
-        var divElementActor = document.getElementById(textDiv);
-        var textBoxesActor = divElementActor.querySelectorAll('input[type="text"]');  
-        var intBoxesActor = divElementActor.querySelectorAll('input[type="number"]');  
-        actMsg = "Empty elements are: \n";
-        var actFlag = 0;
-        
-        // Loops through each type=text input and validates. 
-        for( var j = 0 ; j < textBoxesActor.length; j++ ){
-            if( textBoxesActor[j].value.trim() == "" )
-            {
-                actMsg += "- " + textBoxesActor[j].placeholder + "\n";
-                textBoxesActor[j].classList.remove("valid");
-                textBoxesActor[j].classList.add("invalid");
-                actFlag = 1;
-            } else {
-                textBoxesActor[j].classList.remove("invalid");
-                textBoxesActor[j].classList.add("valid");
-            } 
-        }
-
-        // loops throuch each of the type=number values and validates
-        for(var m = 0 ; m < intBoxesActor.length; m++)
-        {
-            y = intBoxesActor[m].value;
-            if(!/^[0-99]+$/.test(y))
-            {
-                actMsg += "- " + intBoxesActor[m].placeholder + "\n";
-                intBoxesActor[m].classList.add("invalid");
-                intBoxesActor[m].classList.remove("valid");
-                actFlag = 1;
-            } else {
-                intBoxesActor[m].classList.add("valid");
-                intBoxesActor[m].classList.remove("invalid");
-            }
-        }
-
-
-
-        if( actFlag == 1 )
-        {
-            alert(actMsg);
-            return false;
-        }
-
-        return true;
- 
+        var divElement = document.getElementById(textDiv);
     }
+    
+    var textBoxes = divElement.querySelectorAll('input[type="text"]');
+    var intBoxes = divElement.querySelectorAll('input[type="number"]');
+    msg = "Empty Elements are: \n";
+    var Flag = 0;
+
+    // Loops through each type=text input and validates. 
+    for(var i = 0 ; i < textBoxes.length; i++)
+    {
+        if( textBoxes[i].value.trim() == "" )
+        {
+            msg += "- " + textBoxes[i].placeholder + "\n";
+            textBoxes[i].classList.remove("valid");
+            textBoxes[i].classList.add("invalid");
+            Flag = 1;
+        } else {
+            textBoxes[i].classList.remove("invalid");
+            textBoxes[i].classList.add("valid");
+        }
+    }
+
+    // loops throuch each of the type=number values and validates
+    for( var k = 0 ; k < intBoxes.length; k++ )
+    {
+        x = intBoxes[k].value;
+        if(!/^[0-99]+$/.test(x))
+        {
+            msg += "- " + intBoxes[k].placeholder + "\n";
+            intBoxes[k].classList.remove("valid");
+            intBoxes[k].classList.add("invalid");
+            Flag = 1;
+        } else {
+            intBoxes[k].classList.remove("invalid");
+            intBoxes[k].classList.add("valid");
+        }
+    }
+
+    if( Flag == 1 )
+    {
+        alert(msg);
+        return false;
+    }
+
+    return true;
 
 }
 
