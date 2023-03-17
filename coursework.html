@@ -23,48 +23,51 @@
     <h2 class = "headings" ; style = "text-align: center;">Adding/Deleting an entry</h2>
 
     <!-- FORM FOR ADDING / DELETING ENTRIES INTO THE DATABASE -->
-    <form onsubmit= "if( (validateRadio() && validateTextUniversal('actorInput','movieInput')) == false){return false;}else{return true;}" name = "tableToChangeForm" > <!-- form does not submit if false, if true submits -->
+    
+    <form onsubmit= "if( (validateRadio() && validateTextUniversal('actorInput','movieInput')) == false){return false;}else{return true;}" action = "addRemoveEntry.php" method = "post" name = "tableToChangeForm" target="_blank"> <!-- form does not submit if false, if true submits -->
+        <fieldset>
+            <legend>Adding / Deleting an entry</legend>
+            <!-- Choice of possible tables operate on -->
+            <p>Table Choice:</p>
+            <input type="radio" id="actButton" name="tableToChange" value="Actor" onclick="clickedMeRadio('Actor','specTable'); hideDiv('movieInput','actorInput');">
+            <label for="actButton">Actor</label><br>
+            <input type="radio" id="movieButton" name="tableToChange" value="Movie" onclick="clickedMeRadio('Movie','specTable'); hideDiv('actorInput','movieInput');">
+            <label for="movieButton">Movie</label>
 
-        <!-- Choice of possible tables operate on -->
-        <p>Enter choice for table:</p>
-        <input type="radio" id="actButton" name="tableToChange" value="Actor" onclick="clickedMeRadio('Actor','specTable'); hideDiv('movieInput','actorInput');">
-        <label for="actButton">Actor</label><br>
-        <input type="radio" id="movieButton" name="tableToChange" value="Movie" onclick="clickedMeRadio('Movie','specTable'); hideDiv('actorInput','movieInput');">
-        <label for="movieButton">Movie</label>
+            <!-- Choice of Operations to apply to the chosen table -->
+            <br><p>Operation:</p>
+            <input type="radio" id="addButton" name="operationValue" value="INSERT INTO" onclick="clickedMeRadio('Add','addOrDeleteP')">
+            <label for="addButton">Add</label><br>
+            <input type="radio" id="deleteButton" name="operationValue" value="DELETE" onclick="clickedMeRadio('Delete','addOrDeleteP')">
+            <label for="deleteButton">Delete</label>
+            <br>
 
-        <!-- Choice of Operations to apply to the chosen table -->
-        <br><p>Add or Delete an Entry:</p>
-        <input type="radio" id="addButton" name="operationValue" value="ADD" onclick="clickedMeRadio('Add','addOrDeleteP')">
-        <label for="addButton">Add</label><br>
-        <input type="radio" id="deleteButton" name="operationValue" value="DELETE" onclick="clickedMeRadio('Delete','addOrDeleteP')">
-        <label for="deleteButton">Delete</label>
-        <br>
+            <!-- Conformation for each of the radio buttons to specify to the user which options where picked -->
+            <p id = "specTable">Table: No Table Selected </p>
+            <p id = "addOrDeleteP">Operation: No Operation Selected</p>
 
-        <!-- Conformation for each of the radio buttons to specify to the user which options where picked -->
-        <p id = "specTable">Table: No Table Selected </p>
-        <p id = "addOrDeleteP">Operation: No Operation Selected</p>
+            <!-- Actor table input fields -->
+            <div id = "actorInput" class = "dissapearing">
+                <input type = "text" name = "actFullName" placeholder="Full Name" class = "stringInput" maxlength="20"><br>
+                <input type = "number" name = "actAge" class = "integerInput" min="1" max="99" placeholder="Age" id = "actAgeInp"><br>
+                <input type = "hidden" id = "actorInputHidden" name = "actorInputHidden" value = "0">
+            </div>
 
-        <!-- Actor table input fields -->
-        <div id = "actorInput" class = "dissapearing">
-            <input type = "text" name = "actFullName" placeholder="Full Name" class = "stringInput"><br>
-            <input type = "number" name = "actAge" class = "integerInput" min="1" max="99" placeholder="Age" id = "actAgeInp"><br>
-        </div>
+            <!-- Movie table input fields -->
+            <div id = "movieInput" class = "dissapearing">
+                <input type = "number" name = "mvActorId" placeholder="Movie ActorId" min="1" max="99" id = "movActIdInp" class = "integerInput"><br>
+                <input type = "text" name = "mvName" placeholder="Film Title" id = "mvNameInp" class = "stringInput" maxlength="20"><br>
+                <input type = "number" name = "mvRating" placeholder="Rating" min="1" max="99" id = "ratingMvInp" class = "integerInput"><br>  
+                <input type = "text" name = "mvGenre" placeholder="Genre" id = "genreMvInp" class = "stringInput" maxlength="20" ><br>
+                <input type = "number" name = "mvLength" placeholder="Length (Hours)" min="1" max="99" id = "lengthMvInp" class = "integerInput"><br>
+                <input type = "hidden" id = "movieInputHidden" name = "movieInputHidden" value = "0">
+            </div>
 
-        <!-- Movie table input fields -->
-        <div id = "movieInput" class = "dissapearing">
-            <input type = "number" name = "mvActorId" placeholder="Movie ActorId" min="1" max="99" id = "movActIdInp" class = "integerInput"><br>
-            <input type = "text" name = "mvName" placeholder="Film Title" id = "mvNameInp" class = "stringInput"><br>
-            <input type = "number" name = "mvRating" placeholder="Rating" min="1" max="99" id = "ratingMvInp" class = "integerInput"><br>  
-            <input type = "text" name = "mvGenre" placeholder="Genre" id = "genreMvInp" class = "stringInput"><br>
-            <input type = "number" name = "mvLength" placeholder="Length (Hours)" min="1" max="99" id = "lengthMvInp" class = "integerInput"><br>
-        </div>
-
-        <!-- Submit button for "tableToChangeForm" -->
-        <input type="submit" id = "submitChange" value="Submit" >
-
+            <!-- Submit button for "tableToChangeForm" -->
+            <input type="submit" id = "submitChange" value="Submit" >
+            <input type="reset">
+        </fieldset>
     </form>
-
-    <p id = "Conformation"></p>
 
 </div>
 
@@ -73,34 +76,39 @@
     <h2 class = "headings" ; style = "text-align: center;">Searching for an entry</h2>
 
     <!-- FORM FOR SEARCHING FOR ENTRIES INSIDE OF THE DATABASE -->    
-    <p>Table to be searched:</p>
-    <form name = "tableToBeSearched" onsubmit= "if( (searchValidateRadio() && validateTextUniversal('searchActorInput','searchMovieInput')) == false){return false;}else{return true;}">
-        <!-- Radio buttons to define which table to be searched -->
-        <input type="radio" id="searchActor" name="searchTable" value="Actor" onclick="clickedMeRadio('Actor','searchTable'); hideDiv('searchMovieInput','searchActorInput');">
-        <label for="searchActor">Actor</label><br>
-        <input type="radio" id="searchMovie" name="searchTable" value="Movie" onclick="clickedMeRadio('Movie','searchTable'); hideDiv('searchActorInput','searchMovieInput');">
-        <label for="searhMovie">Movie</label>
+    <form name = "tableToBeSearched" onsubmit= "if( (searchValidateRadio() && validateTextUniversal('searchActorInput','searchMovieInput')) == false){return false;}else{return true;}" target="_blank"`1>
+        <fieldset>
+            <legend>Searching Tables</legend>
+            <!-- Radio buttons to define which table to be searched -->
+            <input type="radio" id="searchActor" name="searchTable" value="Actor" onclick="clickedMeRadio('Actor','searchTable'); hideDiv('searchMovieInput','searchActorInput');">
+            <label for="searchActor">Actor</label><br>
+            <input type="radio" id="searchMovie" name="searchTable" value="Movie" onclick="clickedMeRadio('Movie','searchTable'); hideDiv('searchActorInput','searchMovieInput');">
+            <label for="searhMovie">Movie</label>
 
-        <p id = "searchTable">Table searching: No Table Selected </p>
+            <p id = "searchTable">Table searching: No Table Selected </p>
 
-        <!-- Actor Table input fields -->
-        <div id = "searchActorInput" class = "dissapearing">
-            <input type = "text" name = "searchActFullName" placeholder="(Search) Full Name" id = "searchFullName" class = "stringInput"><br>
-            <input type = "text" name = "searchActAge" placeholder="(Search) Age" id = "searchAge" class = "integerInput"><br>
-        </div>
+            <!-- Actor Table input fields -->
+            <div id = "searchActorInput" class = "dissapearing">
+                <input type = "text" name = "searchActFullName" placeholder="(Search) Full Name" id = "searchFullName" class = "stringInput" maxlength="20"><br>
+                <input type = "number" name = "searchActAge" placeholder="(Search) Age" id = "searchAge" class = "integerInput"  min="1" max="99"><br>
+                <input type = "hidden" id = "searchActorInputHidden" name = "searchActorInputHidden" value = "0">
+            </div>
 
-        <!-- Movie table input fields-->
-        <div id = "searchMovieInput" class = "dissapearing">
-            <input type = "text" name = "searchMvActorId" placeholder="(Search) Movie ActorId" id = "searchMovActIdInp" class = "integerInput"><br>
-            <input type = "text" name = "searchMvName" placeholder="(Search) Film Title" id = "searchMvNameInp" class = "stringInput"><br>
-            <input type = "text" name = "searchMvRating" placeholder="(Search) Rating" id = "searchRatingMvInp" class = "integerInput"><br>  
-            <input type = "text" name = "searchMvGenre" placeholder="(Search) Genre" id = "searchGenreMvInp" class = "stringInput"><br>
-            <input type = "text" name = "searchMvLength" placeholder="(Search) Length (Hours)" id = "searchLengthMvInp" class="integerInput"><br>
-        </div>
+            <!-- Movie table input fields-->
+            <div id = "searchMovieInput" class = "dissapearing">
+                <input type = "number" name = "searchMvActorId" placeholder="(Search) Movie ActorId" id = "searchMovActIdInp" class = "integerInput"  min="1" max="99"><br>
+                <input type = "text" name = "searchMvName" placeholder="(Search) Film Title" id = "searchMvNameInp" class = "stringInput" maxlength="20"><br>
+                <input type = "mumber" name = "searchMvRating" placeholder="(Search) Rating" id = "searchRatingMvInp" class = "integerInput"  min="1" max="99"><br>  
+                <input type = "text" name = "searchMvGenre" placeholder="(Search) Genre" id = "searchGenreMvInp" class = "stringInput" maxlength="20"><br>
+                <input type = "number" name = "searchMvLength" placeholder="(Search) Length (Hours)" id = "searchLengthMvInp" class="integerInput"  min="1" max="99"><br>
+                <input type = "hidden" id = "searchMovieInputHidden" name = "searchMovieInputHidden" value = "0">
+            </div>
 
-        <!-- Submit button for "tableToBeSearched" -->
-        <input type="submit" id = "submitSearch" value="Submit" >
+            <!-- Submit button for "tableToBeSearched" -->
+            <input type="submit" id = "submitSearch" value="Submit" >
 
+            <input type="reset">
+        </fieldset>
     </form>
     
 </div>
@@ -109,6 +117,11 @@
 <div id="Results">
 
     <h2 class = "headings" ; style = "text-align: center;">Results</h2>
+    
+    <?php
+        error_reporting(0);
+        echo $_GET['msg'];
+    ?>
     
 </div>
 

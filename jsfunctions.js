@@ -30,9 +30,19 @@ function clickedMeRadio(tableClicked,pToChange)
 function hideDiv(eleToHide,eleToShow){
     var divHide = document.getElementById(eleToHide);
     var divShow = document.getElementById(eleToShow);
-
     divHide.style.display = 'none';
     divShow.style.display = 'block';
+
+    // sets a hidden value to indicate to the php form which set of inputs are being used. 
+    // 1 = value is being shown / 0 = value being hidden
+    var x = divShow.querySelectorAll('input[type="hidden"]');
+    var y = divHide.querySelectorAll('input[type="hidden"]');
+
+    x[0].value = 1;
+    y[0].value = 0;
+
+
+    // alert("value of " + eleToShow + ": " +  x[0].value + "\n" + "value of " + eleToHide + ": " + y[0].value);
 
     return;
 }
@@ -189,5 +199,3 @@ function validateTextUniversal(textDiv,otherDiv)
     return true;
 
 }
-
-
