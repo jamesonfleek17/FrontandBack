@@ -1,9 +1,7 @@
-body {
-    background-color: #011f4b;
+/*Classes for general structure and headings*/
+body{
     color: white;
-    font-family: verdana;
 }
-
 
 .headings {
     color: white;
@@ -12,37 +10,13 @@ body {
 
 .inputDiv {
     color: white;
-    padding: 20px;
-    text-align: left;
-    margin: 5px 0;
-  }
-
-#addRemovePerson {
-    background-color: #03396c;
     padding: 10px;
     text-align: left;
     margin: 10px 0;
+    backdrop-filter: blur(10px);
+    background-color: rgba(41, 39, 39, 0.336);  
 }
 
-#searchPerson {
-    background-color: #005b96;
-    padding: 10px;
-    text-align: left;
-    margin: 10px 0;
-}
-
-#Results {
-    background-color: #6497b1;
-    padding: 10px;
-    text-align: left;
-    margin: 10px 0;
-}
-
-/* headings for each div */
-.headings {
-    color: white;
-    font-family: verdana;
-}
 
 /* disappearing class for divs changing */
 .dissapearing{
@@ -56,7 +30,7 @@ body {
 
 /* classes for inputs box validation */
 .invalid {
-    background-color: #FF8787
+    background-color: #FF8787;
 }
 
 .valid {
@@ -64,18 +38,28 @@ body {
 }
 
 
-.integerInput {
+/* style for input boxes*/
+.InputBox {
+    width: 50%;
     border : none;
-    width: 100%;
     padding: 12px 20px;
     margin: 5px 0;
-    box-sizing: border-box;
+    color: black;
 }
 
-.stringInput {
-    width: 100%;
-    border : none;
-    padding: 12px 20px;
-    margin: 5px 0;
-    box-sizing: border-box;
+/* classes which hide input propmpt and search results IFRAMES*/
+.results_class_hide {
+    display : none;
 }
+
+.results_class_show{
+    display: block;
+}
+
+
+.required_input{
+    color:black;
+}
+
+/*Class for page links*/
+a { color: white; }

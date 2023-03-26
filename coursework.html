@@ -10,35 +10,36 @@
 
 
 
-<body>
+<body style="text-align: center; background-image: url('image.jpg');">
 
-<h1 style = "text-align: center;">Coursework2 - Html, JavaScript, CSS, PHP, MySQLi</h1>
-
-<p>In this Coursework I demonstrate how to add, remove and search for componnets in a Movie and Actor table.</p>
-
-
+<div class = "inputDiv">
+<h1 style = "text-align: center;">Coursework2</h1>
+<p>Coursework 2 hosted by James Gammon, operating on the psyjg18_COMP1004 database. <br>- Fields with * are <u>required</u> <br>- All number fields range from 1-10 <br>- The maxiumum text input is 20 chars</p>
+<nav>
+    <a href="./results.html">Results</a>
+</nav>
+</div>
 
 <div id="addRemovePerson" class = "inputDiv">
 
     <h2 class = "headings" ; style = "text-align: center;">Adding/Deleting an entry</h2>
 
     <!-- FORM FOR ADDING / DELETING ENTRIES INTO THE DATABASE -->
-    
-    <form onsubmit= "if( (validateRadio() && validateTextUniversal('actorInput','movieInput')) == false){return false;}else{return true;}" action = "addRemoveEntry.php" method = "post" name = "tableToChangeForm" target="_blank"> <!-- form does not submit if false, if true submits -->
+    <form autocomplete = "off" onsubmit= "if( (validateRadio() && validateTextUniversal('actorInput','movieInput')) == false){return false;}else{return true;}" action = "addRemoveEntry.php" method = "post" name = "tableToChangeForm" target="target_operation"> <!-- form does not submit if false, if true submits -->
         <fieldset>
-            <legend>Adding / Deleting an entry</legend>
+            <legend>Tables and values </legend>
             <!-- Choice of possible tables operate on -->
             <p>Table Choice:</p>
-            <input type="radio" id="actButton" name="tableToChange" value="Actor" onclick="clickedMeRadio('Actor','specTable'); hideDiv('movieInput','actorInput');">
+            <input type="radio" id="actButton" name="tableToChange" value="Actor " onclick="clickedMeRadio('Actor','specTable'); hideDiv('movieInput','actorInput');">
             <label for="actButton">Actor</label><br>
-            <input type="radio" id="movieButton" name="tableToChange" value="Movie" onclick="clickedMeRadio('Movie','specTable'); hideDiv('actorInput','movieInput');">
+            <input type="radio" id="movieButton" name="tableToChange" value="Movie " onclick="clickedMeRadio('Movie','specTable'); hideDiv('actorInput','movieInput');">
             <label for="movieButton">Movie</label>
 
             <!-- Choice of Operations to apply to the chosen table -->
             <br><p>Operation:</p>
-            <input type="radio" id="addButton" name="operationValue" value="INSERT INTO" onclick="clickedMeRadio('Add','addOrDeleteP')">
+            <input type="radio" id="addButton" name="operationValue" value="INSERT INTO " onclick="clickedMeRadio('Add','addOrDeleteP')">
             <label for="addButton">Add</label><br>
-            <input type="radio" id="deleteButton" name="operationValue" value="DELETE" onclick="clickedMeRadio('Delete','addOrDeleteP')">
+            <input type="radio" id="deleteButton" name="operationValue" value="DELETE FROM " onclick="clickedMeRadio('Delete','addOrDeleteP')">
             <label for="deleteButton">Delete</label>
             <br>
 
@@ -48,26 +49,40 @@
 
             <!-- Actor table input fields -->
             <div id = "actorInput" class = "dissapearing">
-                <input type = "text" name = "actFullName" placeholder="Full Name" class = "stringInput" maxlength="20"><br>
-                <input type = "number" name = "actAge" class = "integerInput" min="1" max="99" placeholder="Age" id = "actAgeInp"><br>
+                *Actor Name<br>
+                <input type = "text" name = "actFullName" placeholder="Full Name" class = "InputBox required_input" maxlength="20"><br>
+                Age<br>
+                <input type = "number" name = "actAge" class = "InputBox" min="1" max="10" placeholder="Age" id = "actAgeInp"><br>
+                <!-- Each input field has a hidden value to indicate which input fields are active -->
                 <input type = "hidden" id = "actorInputHidden" name = "actorInputHidden" value = "0">
             </div>
 
             <!-- Movie table input fields -->
             <div id = "movieInput" class = "dissapearing">
-                <input type = "number" name = "mvActorId" placeholder="Movie ActorId" min="1" max="99" id = "movActIdInp" class = "integerInput"><br>
-                <input type = "text" name = "mvName" placeholder="Film Title" id = "mvNameInp" class = "stringInput" maxlength="20"><br>
-                <input type = "number" name = "mvRating" placeholder="Rating" min="1" max="99" id = "ratingMvInp" class = "integerInput"><br>  
-                <input type = "text" name = "mvGenre" placeholder="Genre" id = "genreMvInp" class = "stringInput" maxlength="20" ><br>
-                <input type = "number" name = "mvLength" placeholder="Length (Hours)" min="1" max="99" id = "lengthMvInp" class = "integerInput"><br>
+                *Actor name<br>
+                <input type = "text" name = "mvActorName" placeholder="Full name" maxlength="20" id = "movActName" class = "InputBox required_input"><br>
+                *Title<br>
+                <input type = "text" name = "mvName" placeholder="Movie Title" id = "mvNameInp" class = "InputBox required_input" maxlength="20"><br>
+                Rating<br>
+                <input type = "number" name = "mvRating" placeholder="Rating" min="1" max="10" id = "ratingMvInp" class = "InputBox"><br>  
+                Genre<br>
+                <input type = "text" name = "mvGenre" placeholder="Genre" id = "genreMvInp" class = "InputBox" maxlength="20" ><br>
+                Length<br>
+                <input type = "number" name = "mvLength" placeholder="Length (Hours)" min="1" max="10" id = "lengthMvInp" class = "InputBox"><br>
+                <!-- Each input field has a hidden value to indicate which input fields are active -->
                 <input type = "hidden" id = "movieInputHidden" name = "movieInputHidden" value = "0">
             </div>
 
             <!-- Submit button for "tableToChangeForm" -->
             <input type="submit" id = "submitChange" value="Submit" >
-            <input type="reset">
+            <input type="reset" onclick = "resetDiv('actorInput','movieInput')">
         </fieldset>
     </form>
+
+    <div id = "addRemoveResults">
+        <h3>Prompt:</h3>
+        <iframe src="addRemoveEntry.php" frameborder="0" name="target_operation" style class = "results_class_hide" id="target_operation" height = "100%" width = "100%"></iframe>
+    </div>
 
 </div>
 
@@ -76,53 +91,62 @@
     <h2 class = "headings" ; style = "text-align: center;">Searching for an entry</h2>
 
     <!-- FORM FOR SEARCHING FOR ENTRIES INSIDE OF THE DATABASE -->    
-    <form name = "tableToBeSearched" onsubmit= "if( (searchValidateRadio() && validateTextUniversal('searchActorInput','searchMovieInput')) == false){return false;}else{return true;}" target="_blank"`1>
+    <form autocomplete = "off" name = "tableToBeSearched" onsubmit= "if( (searchValidateRadio() && validateTextUniversal('searchActorInput','searchMovieInput')) == false){return false;}else{return true;}" action = "searchTable.php" method = "post" target="target_iframe">    <!-- form does not submit if false, if true submits -->
         <fieldset>
-            <legend>Searching Tables</legend>
+            <legend>Tables and Values</legend>
             <!-- Radio buttons to define which table to be searched -->
-            <input type="radio" id="searchActor" name="searchTable" value="Actor" onclick="clickedMeRadio('Actor','searchTable'); hideDiv('searchMovieInput','searchActorInput');">
+            <input type="radio" id="searchActor" name="searchTable" value="Actor " onclick="clickedMeRadio('Actor','searchTable'); hideDiv('searchMovieInput','searchActorInput');">
             <label for="searchActor">Actor</label><br>
-            <input type="radio" id="searchMovie" name="searchTable" value="Movie" onclick="clickedMeRadio('Movie','searchTable'); hideDiv('searchActorInput','searchMovieInput');">
-            <label for="searhMovie">Movie</label>
+            <input type="radio" id="searchMovie" name="searchTable" value="Movie " onclick="clickedMeRadio('Movie','searchTable'); hideDiv('searchActorInput','searchMovieInput');">
+            <label for="searchTable">Movie</label>
 
             <p id = "searchTable">Table searching: No Table Selected </p>
 
             <!-- Actor Table input fields -->
             <div id = "searchActorInput" class = "dissapearing">
-                <input type = "text" name = "searchActFullName" placeholder="(Search) Full Name" id = "searchFullName" class = "stringInput" maxlength="20"><br>
-                <input type = "number" name = "searchActAge" placeholder="(Search) Age" id = "searchAge" class = "integerInput"  min="1" max="99"><br>
+                Actor Name<br>
+                <input type = "text" name = "searchActFullName" placeholder="(Search) Full Name" id = "searchFullName" class = "InputBox" maxlength="20"><br>
+                Age<br>
+                <input type = "number" name = "searchActAge" placeholder="(Search) Age" id = "searchAge" class = "InputBox"  min="1" max="10"><br>
+
+                <!-- Each input field has a hidden value to indicate which input fields are active -->
                 <input type = "hidden" id = "searchActorInputHidden" name = "searchActorInputHidden" value = "0">
             </div>
 
             <!-- Movie table input fields-->
             <div id = "searchMovieInput" class = "dissapearing">
-                <input type = "number" name = "searchMvActorId" placeholder="(Search) Movie ActorId" id = "searchMovActIdInp" class = "integerInput"  min="1" max="99"><br>
-                <input type = "text" name = "searchMvName" placeholder="(Search) Film Title" id = "searchMvNameInp" class = "stringInput" maxlength="20"><br>
-                <input type = "mumber" name = "searchMvRating" placeholder="(Search) Rating" id = "searchRatingMvInp" class = "integerInput"  min="1" max="99"><br>  
-                <input type = "text" name = "searchMvGenre" placeholder="(Search) Genre" id = "searchGenreMvInp" class = "stringInput" maxlength="20"><br>
-                <input type = "number" name = "searchMvLength" placeholder="(Search) Length (Hours)" id = "searchLengthMvInp" class="integerInput"  min="1" max="99"><br>
+                Actor name<br>
+                <input type = "text" name = "searchMvActorName" placeholder="Full name" id = "searchMvActName" class = "InputBox" maxlength="20"><br>
+                Movie Title<br>
+                <input type = "text" name = "searchMvName" placeholder="Title" id = "searchMvNameInp" class = "InputBox" maxlength="20"><br>
+                Rating<br>
+                <input type = "number" name = "searchMvRating" placeholder="Rating" id = "searchRatingMvInp" class = "InputBox"  min="1" max="10"><br>  
+                Genre<br>
+                <input type = "text" name = "searchMvGenre" placeholder="Genre" id = "searchGenreMvInp" class = "InputBox" maxlength="20"><br>
+                Length<br>
+                <input type = "number" name = "searchMvLength" placeholder="Length (Hours)" id = "searchLengthMvInp" class="InputBox"  min="1" max="10"><br>
+
+                <!-- Each input field has a hidden value to indicate which input fields are active -->
                 <input type = "hidden" id = "searchMovieInputHidden" name = "searchMovieInputHidden" value = "0">
             </div>
 
             <!-- Submit button for "tableToBeSearched" -->
-            <input type="submit" id = "submitSearch" value="Submit" >
+            <input type="submit" id = "submitSearch" value="Submit">
 
-            <input type="reset">
+            <input type="reset" onclick = "resetDiv('searchActorInput','searchMovieInput')">
         </fieldset>
     </form>
     
 </div>
     
 
-<div id="Results">
+<div id="Results" class = "inputDiv">
 
-    <h2 class = "headings" ; style = "text-align: center;">Results</h2>
-    
-    <?php
-        error_reporting(0);
-        echo $_GET['msg'];
-    ?>
-    
+    <h2 class = "headings" style = "text-align: center;">Results</h2>
+
+    <iframe name = "target_iframe" src = "searchTable.php" id = "target_iframe" class = "results_class_hide" style=" text-align: center; border:none" height="100%" width="100%">
+    </iframe>
+
 </div>
 
 
